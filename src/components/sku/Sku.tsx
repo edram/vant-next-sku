@@ -13,6 +13,7 @@ import { LIMIT_TYPE, UNSELECTED_SKU_VALUE_ID } from "./constants";
 
 import SkuHeader from "./components/SkuHeader";
 import SkuHeaderItem from "./components/SkuHeaderItem";
+import SkuActions from "./components/SkuActions";
 
 import type { SkuData, SkuGoodsData, SelectedSkuData } from "./data";
 
@@ -320,6 +321,15 @@ export default defineComponent({
       </SkuHeader>
     );
 
+    const Actions = slots["sku-actions"] || (
+      <SkuActions
+        buyText={this.buyText}
+        // skuEventBus={skuEventBus}
+        addCartText={this.addCartText}
+        showAddCartBtn={this.showAddCartBtn}
+      />
+    );
+
     return (
       <Popup
         v-model={[this.show, "show"]}
@@ -337,6 +347,8 @@ export default defineComponent({
           {slots["sku-body-top"]}
           {slots["extra-sku-group"]}
         </div>
+        {slots["sku-actions-top"]}
+        {Actions}
       </Popup>
     );
   },
