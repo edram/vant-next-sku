@@ -152,13 +152,20 @@ export default defineComponent({
         ],
       },
       selectedSku: {},
+      goods_info: {
+        price: 1,
+        title: "测试商品",
+        picture: "https://b.yzcdn.cn/vant/sku/shoes-1.png",
+      },
     };
   },
   render() {
-    const { sku, selectedSku } = this;
+    const { sku, selectedSku, goods_info } = this;
     return (
       <>
-        <Sku>123</Sku>
+        <Sku sku={sku} value={true} goods={goods_info}>
+          123
+        </Sku>
       </>
     );
   },
