@@ -5,13 +5,16 @@ import Popup from "vant/lib/popup";
 import {
   isAllSelected,
   getSkuComb,
+  getSelectedSkuValues,
   getSelectedProperties,
   getSelectedPropValues,
 } from "./utils/sku-helper";
-
-import type { SkuData, SkuGoodsData, SelectedSkuData } from "./data";
+import { LIMIT_TYPE, UNSELECTED_SKU_VALUE_ID } from "./constants";
 
 import SkuHeader from "./components/SkuHeader";
+import SkuHeaderItem from "./components/SkuHeaderItem";
+
+import type { SkuData, SkuGoodsData, SelectedSkuData } from "./data";
 
 const [name, bem] = createNamespace("sku");
 
@@ -134,6 +137,10 @@ export default defineComponent({
       return !this.sku!.none_sku;
     },
 
+    hasSkuOrAttr(): boolean {
+      return this.hasSku || this.propList.length > 0;
+    },
+
     propList(): any[] {
       return this.properties || [];
     },
@@ -166,6 +173,7 @@ export default defineComponent({
       price?: number;
       stock_num?: number;
       property_price?: number;
+      origin_price?: number;
     } | null {
       let skuComb = null;
       if (this.isSkuCombSelected) {
@@ -192,6 +200,10 @@ export default defineComponent({
       return skuComb;
     },
 
+    selectedSkuValues(): any[] {
+      return getSelectedSkuValues(this.skuTree, this.selectedSku);
+    },
+
     price(): string {
       if (this.selectedSkuComb) {
         return (
@@ -203,6 +215,66 @@ export default defineComponent({
       // sku.price是一个格式化好的价格区间
       return this.sku!.price;
     },
+
+    originPrice(): string {
+      if (this.selectedSkuComb && this.selectedSkuComb.origin_price) {
+        return (
+          (this.selectedSkuComb.origin_price +
+            (this.selectedSkuComb?.property_price || 0)) /
+          100
+        ).toFixed(2);
+      }
+      return this.sku!.origin_price || "";
+    },
+
+    stock(): number {
+      const { stockNum } = this.customStepperConfig;
+      if (stockNum !== undefined) {
+        return stockNum;
+      }
+      if (this.selectedSkuComb) {
+        return this.selectedSkuComb.stock_num || 0;
+      }
+      return this.sku!.stock_num;
+    },
+
+    stockText(): any {
+      const { stockFormatter } = this.customStepperConfig;
+      if (stockFormatter) {
+        return stockFormatter(this.stock);
+      }
+
+      return [
+        `剩余 `,
+        <span
+          class={bem("stock-num", {
+            highlight: this.stock < this.stockThreshold,
+          })}
+        >
+          {this.stock}
+        </span>,
+        ` 件`,
+      ];
+    },
+
+    selectedText(): string {
+      if (this.selectedSkuComb) {
+        const values = this.selectedSkuValues.concat(this.selectedPropValues);
+        return `已选 ${values.map((item) => item.name).join(" ")}`;
+      }
+
+      const unselectedSku = this.skuTree
+        .filter(
+          (item) => this.selectedSku[item.k_s] === UNSELECTED_SKU_VALUE_ID
+        )
+        .map((item) => item.k);
+
+      const unselectedProp = this.propList
+        .filter((item) => (this.selectedProp[item.k_id] || []).length < 1)
+        .map((item) => item.k);
+
+      return `请选择 ${unselectedSku.concat(unselectedProp).join(" ")}`;
+    },
   },
 
   render() {
@@ -210,7 +282,8 @@ export default defineComponent({
       return <></>;
     }
 
-    const { sku, goods, price, selectedSku, showHeaderImage } = this;
+    const { sku, goods, price, originPrice, selectedSku, showHeaderImage } =
+      this;
 
     const slots = this.$slots;
 
@@ -231,6 +304,18 @@ export default defineComponent({
             )}
           </div>
         )}
+        {slots["sku-header-origin-price"] ||
+          (originPrice && <SkuHeaderItem>原价 ￥{originPrice}</SkuHeaderItem>)}
+        {!this.hideStock && (
+          <SkuHeaderItem>
+            <span class="van-sku__stock">{this.stockText}</span>
+          </SkuHeaderItem>
+        )}
+
+        {this.hasSkuOrAttr && !this.hideSelectedText && (
+          <SkuHeaderItem>{this.selectedText}</SkuHeaderItem>
+        )}
+
         {slots["sku-header-extra"]}
       </SkuHeader>
     );

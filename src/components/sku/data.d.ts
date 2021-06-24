@@ -7,6 +7,7 @@ export type SkuData = {
   tree: SkuTreeItemData[];
   list: SkuListItemData[];
   messages: SkuMessageData[];
+  origin_price?: string;
   // properties: SkuPropItemData[];
 };
 
