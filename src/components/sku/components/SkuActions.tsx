@@ -1,6 +1,8 @@
-import { defineComponent } from "vue";
+import { defineComponent, PropType } from "vue";
 import { createNamespace } from "vant/lib/utils";
 import Button from "vant/lib/button";
+
+import { TinyEmitter } from "tiny-emitter";
 
 const [name, bem] = createNamespace("sku-actions");
 
@@ -9,14 +11,14 @@ export default defineComponent({
 
   props: {
     buyText: String,
-    // skuEventBus: Vue;
+    skuEventBus: Object as PropType<TinyEmitter>,
     addCartText: String,
     showAddCartBtn: Boolean,
   },
 
   setup(props, { slots }) {
     const createEmitter = (name: string) => () => {
-      // props.skuEventBus.$emit(name);
+      props.skuEventBus?.emit(name);
     };
 
     return () => (

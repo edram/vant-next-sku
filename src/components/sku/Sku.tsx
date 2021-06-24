@@ -1,4 +1,5 @@
 import { defineComponent, PropType } from "vue";
+import { TinyEmitter } from "tiny-emitter";
 import { createNamespace } from "vant/lib/utils";
 import Popup from "vant/lib/popup";
 
@@ -113,12 +114,14 @@ export default defineComponent({
     selectedProp: Record<string, string>;
     selectedNum: number;
     show: boolean;
+    skuEventBus: TinyEmitter | undefined;
   } {
     return {
       selectedSku: {},
       selectedProp: {},
       selectedNum: 1,
       show: this.value,
+      skuEventBus: undefined,
     };
   },
 
@@ -278,13 +281,40 @@ export default defineComponent({
     },
   },
 
+  created() {
+    const skuEventBus = new TinyEmitter();
+    this.skuEventBus = skuEventBus;
+
+    // skuEventBus.$on("sku:select", this.onSelect);
+    // skuEventBus.$on("sku:propSelect", this.onPropSelect);
+    // skuEventBus.$on("sku:numChange", this.onNumChange);
+    // skuEventBus.$on("sku:previewImage", this.onPreviewImage);
+    // skuEventBus.$on("sku:overLimit", this.onOverLimit);
+    // skuEventBus.$on("sku:stepperState", this.onStepperState);
+    // skuEventBus.$on("sku:addCart", this.onAddCart);
+    // skuEventBus.$on("sku:buy", this.onBuy);
+
+    // this.resetStepper();
+    // this.resetSelectedSku();
+
+    // 组件初始化后的钩子，抛出skuEventBus
+    this.$emit("after-sku-create", skuEventBus);
+  },
+
   render() {
     if (this.isSkuEmpty) {
       return <></>;
     }
 
-    const { sku, goods, price, originPrice, selectedSku, showHeaderImage } =
-      this;
+    const {
+      sku,
+      goods,
+      price,
+      originPrice,
+      selectedSku,
+      showHeaderImage,
+      skuEventBus,
+    } = this;
 
     const slots = this.$slots;
 
@@ -324,7 +354,7 @@ export default defineComponent({
     const Actions = slots["sku-actions"] || (
       <SkuActions
         buyText={this.buyText}
-        // skuEventBus={skuEventBus}
+        skuEventBus={skuEventBus}
         addCartText={this.addCartText}
         showAddCartBtn={this.showAddCartBtn}
       />
