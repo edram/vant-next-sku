@@ -37,5 +37,6 @@ declare module "vue" {
     onTouchstart?: EventHandler;
     onTouchcancel?: EventHandler;
     onSelectSearch?: EventHandler;
+    onOverlimit?: EventHandler;
   }
 }

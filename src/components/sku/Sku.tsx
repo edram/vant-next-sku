@@ -18,6 +18,7 @@ import SkuRow from "./components/SkuRow";
 import SkuRowItem from "./components/SkuRowItem";
 import SkuRowPropItem from "./components/SkuRowPropItem";
 import SkuActions from "./components/SkuActions";
+import SkuStepper from "./components/SkuStepper";
 
 import type { SkuData, SkuGoodsData, SelectedSkuData } from "./data";
 
@@ -327,6 +328,8 @@ export default defineComponent({
       originPrice,
       selectedSku,
       selectedProp,
+      selectedNum,
+      stepperTitle,
       showHeaderImage,
       skuEventBus,
       disableSoldoutSku,
@@ -403,6 +406,26 @@ export default defineComponent({
         </div>
       ));
 
+    const Stepper = slots["sku-stepper"] || (
+      <SkuStepper
+        ref="skuStepper"
+        stock={this.stock}
+        quota={this.quota}
+        quotaUsed={this.quotaUsed}
+        startSaleNum={this.startSaleNum}
+        skuEventBus={skuEventBus}
+        selectedNum={selectedNum}
+        stepperTitle={stepperTitle}
+        skuStockNum={sku!.stock_num}
+        disableStepperInput={this.disableStepperInput}
+        customStepperConfig={this.customStepperConfig}
+        hideQuotaText={this.hideQuotaText}
+        onChange={(event) => {
+          this.$emit("stepper-change", event);
+        }}
+      />
+    );
+
     const Actions = slots["sku-actions"] || (
       <SkuActions
         buyText={this.buyText}
@@ -429,6 +452,7 @@ export default defineComponent({
           {slots["sku-body-top"]}
           {Group}
           {slots["extra-sku-group"]}
+          {Stepper}
         </div>
         {slots["sku-actions-top"]}
         {Actions}
