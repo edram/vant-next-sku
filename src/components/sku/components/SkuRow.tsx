@@ -18,6 +18,12 @@ export default defineComponent({
     };
   },
 
+  computed: {
+    scrollable(): boolean {
+      return this.skuRow!.largeImageMode && this.skuRow!.v.length > 6;
+    },
+  },
+
   methods: {
     genTitle() {
       return (
@@ -28,6 +34,22 @@ export default defineComponent({
           )}
         </div>
       );
+    },
+
+    genIndicator() {
+      if (this.scrollable) {
+        const style = {
+          transform: `translate3d(${this.progress * 20}px, 0, 0)`,
+        };
+
+        return (
+          <div class={bem("indicator-wrapper")}>
+            <div class={bem("indicator")}>
+              <div class={bem("indicator-slider")} style={style} />
+            </div>
+          </div>
+        );
+      }
     },
 
     genContent() {
@@ -71,7 +93,7 @@ export default defineComponent({
       <div class={[bem(), BORDER_BOTTOM]}>
         {this.genTitle()}
         {this.genContent()}
-        {/* {this.genIndicator()} */}
+        {this.genIndicator()}
       </div>
     );
   },
