@@ -99,25 +99,27 @@ export default defineComponent({
         required={this.required}
         placeholder={this.placeholder}
         onClick={this.onClick}
-      >
-        <Popup
-          v-model={[this.showDatePicker, "show"]}
-          round
-          // slot="extra"
-          position="bottom"
-          teleport="body"
-        >
-          <DateTimePicker
-            type={this.type}
-            title={this.title}
-            value={this.currentDate}
-            minDate={this.minDate}
-            formatter={this.formatter}
-            onCancel={this.onCancel}
-            onConfirm={this.onConfirm}
-          />
-        </Popup>
-      </Field>
+        v-slots={{
+          extra: () => (
+            <Popup
+              v-model={[this.showDatePicker, "show"]}
+              round
+              position="bottom"
+              teleport="body"
+            >
+              <DateTimePicker
+                type={this.type}
+                title={this.title}
+                value={this.currentDate}
+                minDate={this.minDate}
+                formatter={this.formatter}
+                onCancel={this.onCancel}
+                onConfirm={this.onConfirm}
+              />
+            </Popup>
+          ),
+        }}
+      ></Field>
     );
   },
 });
