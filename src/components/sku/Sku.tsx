@@ -14,6 +14,8 @@ import { LIMIT_TYPE, UNSELECTED_SKU_VALUE_ID } from "./constants";
 
 import SkuHeader from "./components/SkuHeader";
 import SkuHeaderItem from "./components/SkuHeaderItem";
+import SkuRow from "./components/SkuRow";
+import SkuRowItem from "./components/SkuRowItem";
 import SkuActions from "./components/SkuActions";
 
 import type { SkuData, SkuGoodsData, SelectedSkuData } from "./data";
@@ -126,6 +128,15 @@ export default defineComponent({
   },
 
   computed: {
+    skuGroupClass(): any[] {
+      return [
+        "van-sku-group-container",
+        {
+          "van-sku-group-container--hide-soldout": !this.showSoldoutSku,
+        },
+      ];
+    },
+
     bodyStyle(): { maxHeight: string } {
       const maxHeight = window.innerHeight - this.bodyOffsetTop;
 
@@ -308,12 +319,15 @@ export default defineComponent({
 
     const {
       sku,
+      skuList,
       goods,
       price,
+      lazyLoad,
       originPrice,
       selectedSku,
       showHeaderImage,
       skuEventBus,
+      disableSoldoutSku,
     } = this;
 
     const slots = this.$slots;
@@ -351,6 +365,29 @@ export default defineComponent({
       </SkuHeader>
     );
 
+    const Group =
+      slots["sku-group"] ||
+      (this.hasSkuOrAttr && (
+        <div class={this.skuGroupClass}>
+          {this.skuTree.map((skuTreeItem) => (
+            <SkuRow skuRow={skuTreeItem} ref="skuRows">
+              {skuTreeItem.v.map((skuValue: any) => (
+                <SkuRowItem
+                  skuList={skuList}
+                  lazyLoad={lazyLoad}
+                  skuValue={skuValue}
+                  skuKeyStr={skuTreeItem.k_s}
+                  selectedSku={selectedSku}
+                  skuEventBus={skuEventBus}
+                  disableSoldoutSku={disableSoldoutSku}
+                  largeImageMode={skuTreeItem.largeImageMode}
+                />
+              ))}
+            </SkuRow>
+          ))}
+        </div>
+      ));
+
     const Actions = slots["sku-actions"] || (
       <SkuActions
         buyText={this.buyText}
@@ -375,6 +412,7 @@ export default defineComponent({
         {Header}
         <div class="van-sku-body" style={this.bodyStyle}>
           {slots["sku-body-top"]}
+          {Group}
           {slots["extra-sku-group"]}
         </div>
         {slots["sku-actions-top"]}
