@@ -1,12 +1,11 @@
-import { defineComponent, renderSlot } from "vue";
+import { defineComponent } from "vue";
 import { createNamespace } from "vant/lib/utils";
 import { isSkuChoosable } from "../utils/sku-helper";
 
-import { BORDER_BOTTOM } from "vant/lib/utils/constant";
 import Icon from "vant/lib/icon";
 import Image from "vant/lib/image";
 
-const [name, bem] = createNamespace("sku-row-item");
+const [name, bem] = createNamespace("sku-row");
 
 export default defineComponent({
   name,
