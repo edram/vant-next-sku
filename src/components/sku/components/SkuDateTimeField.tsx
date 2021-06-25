@@ -76,7 +76,7 @@ export default defineComponent({
       if (this.type !== "time") {
         data = dateToString(val, this.type) as string;
       }
-      this.$emit("input", data);
+      this.$emit("update:modelValue", data);
       this.showDatePicker = false;
     },
     onCancel() {
