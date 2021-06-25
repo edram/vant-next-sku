@@ -157,13 +157,72 @@ export default defineComponent({
         title: "测试商品",
         picture: "https://b.yzcdn.cn/vant/sku/shoes-1.png",
       },
+      properties: [
+        {
+          k: "加料",
+          k_id: 124,
+          is_multiple: true,
+          v: [
+            {
+              id: 1224,
+              name: "布丁",
+              price: 3,
+            },
+            {
+              id: 1225,
+              name: "波霸",
+              price: 4,
+            },
+            {
+              id: 1226,
+              name: "珍珠",
+              price: 5,
+            },
+          ],
+        },
+        {
+          k: "非必选属性",
+          k_id: 125,
+          is_multiple: true,
+          is_necessary: false,
+          v: [
+            {
+              id: 1234,
+              name: "属性1",
+              price: 3,
+            },
+            {
+              id: 1235,
+              name: "属性2",
+              price: 4,
+            },
+          ],
+        },
+        {
+          k: "未加价的属性项",
+          k_id: 126,
+          is_multiple: true,
+          v: [
+            {
+              id: 1244,
+              name: "属性a",
+              price: 0,
+            },
+            {
+              id: 1245,
+              name: "属性b",
+              price: 0,
+            },
+          ],
+        },
+      ],
     };
   },
   render() {
-    const { sku, selectedSku, goods_info } = this;
+    const { sku, selectedSku, goods_info, properties } = this;
     return (
       <>
-        <Sku sku={sku} value={true} goods={goods_info}>
+        <Sku sku={sku} value={true} goods={goods_info} properties={properties}>
           123
         </Sku>
       </>

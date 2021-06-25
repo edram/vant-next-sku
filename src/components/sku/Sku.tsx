@@ -16,6 +16,7 @@ import SkuHeader from "./components/SkuHeader";
 import SkuHeaderItem from "./components/SkuHeaderItem";
 import SkuRow from "./components/SkuRow";
 import SkuRowItem from "./components/SkuRowItem";
+import SkuRowPropItem from "./components/SkuRowPropItem";
 import SkuActions from "./components/SkuActions";
 
 import type { SkuData, SkuGoodsData, SelectedSkuData } from "./data";
@@ -325,6 +326,7 @@ export default defineComponent({
       lazyLoad,
       originPrice,
       selectedSku,
+      selectedProp,
       showHeaderImage,
       skuEventBus,
       disableSoldoutSku,
@@ -381,6 +383,19 @@ export default defineComponent({
                   skuEventBus={skuEventBus}
                   disableSoldoutSku={disableSoldoutSku}
                   largeImageMode={skuTreeItem.largeImageMode}
+                />
+              ))}
+            </SkuRow>
+          ))}
+          {this.propList.map((skuTreeItem) => (
+            <SkuRow skuRow={skuTreeItem}>
+              {skuTreeItem.v.map((skuValue: any) => (
+                <SkuRowPropItem
+                  skuValue={skuValue}
+                  skuKeyStr={skuTreeItem.k_id + ""}
+                  selectedProp={selectedProp}
+                  skuEventBus={skuEventBus}
+                  multiple={skuTreeItem.is_multiple}
                 />
               ))}
             </SkuRow>
