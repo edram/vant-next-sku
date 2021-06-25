@@ -63,8 +63,6 @@ export default defineComponent({
           : nodes.push(node);
       });
 
-      console.log(this.skuRow);
-
       if (this.skuRow!.largeImageMode) {
         const top: any[] = [];
         const bottom: any[] = [];

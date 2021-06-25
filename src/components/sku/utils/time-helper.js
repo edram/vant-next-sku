@@ -1,4 +1,4 @@
-import { padZero } from "../../utils/format/string";
+import { padZero } from "vant/lib/utils";
 
 // 字符串转 Date
 // 只处理 YYYY-MM-DD 或者 YYYY-MM-DD HH:MM 格式

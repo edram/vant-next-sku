@@ -19,6 +19,7 @@ import SkuRowItem from "./components/SkuRowItem";
 import SkuRowPropItem from "./components/SkuRowPropItem";
 import SkuActions from "./components/SkuActions";
 import SkuStepper from "./components/SkuStepper";
+import SkuMessages from "./components/SkuMessages";
 
 import type { SkuData, SkuGoodsData, SelectedSkuData } from "./data";
 
@@ -426,6 +427,15 @@ export default defineComponent({
       />
     );
 
+    const Messages = slots["sku-messages"] || (
+      <SkuMessages
+        ref="skuMessages"
+        goodsId={this.goodsId}
+        messageConfig={this.messageConfig}
+        messages={sku!.messages}
+      />
+    );
+
     const Actions = slots["sku-actions"] || (
       <SkuActions
         buyText={this.buyText}
@@ -453,6 +463,7 @@ export default defineComponent({
           {Group}
           {slots["extra-sku-group"]}
           {Stepper}
+          {Messages}
         </div>
         {slots["sku-actions-top"]}
         {Actions}
