@@ -3,13 +3,16 @@
     "tagName": "v${version}",
     "commitMessage": "chore: release ${version}"
   },
+  "npm": {
+    "skipChecks": true
+  },
   "github": {
     "release": true
   },
   "plugins": {
-    "@release-it/keep-a-changelog": {
-      "filename": "CHANGELOG.md",
-      "strictLatest": false
+    "@release-it/conventional-changelog": {
+      "preset": "angular",
+      "infile": "CHANGELOG.md"
     }
   }
 }
