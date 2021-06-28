@@ -1,5 +1,15 @@
 {
+  "git": {
+    "tagName": "v${version}",
+    "commitMessage": "chore: release ${version}"
+  },
   "github": {
     "release": true
+  },
+  "plugins": {
+    "@release-it/keep-a-changelog": {
+      "filename": "CHANGELOG.md",
+      "strictLatest": false
+    }
   }
 }
