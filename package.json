@@ -5,7 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "release": "release-it"
   },
   "dependencies": {
     "core-js": "^3.6.5",
@@ -30,6 +31,7 @@
     "less": "^4.1.1",
     "less-loader": "^7.2.1",
     "prettier": "^2.2.1",
+    "release-it": "^14.10.0",
     "typescript": "~4.1.5"
   }
 }
