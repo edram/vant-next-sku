@@ -1,6 +1,9 @@
 {
   "name": "vant-component",
   "version": "0.1.0",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
