@@ -1,6 +1,6 @@
 {
-  "name": "vant-sku",
-  "version": "0.0.3",
+  "name": "vant-next-sku",
+  "version": "0.0.0",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
