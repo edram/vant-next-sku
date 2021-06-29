@@ -1,3 +1,11 @@
+## [0.1.1](https://github.com/edram/vant-next-sku/compare/v0.1.0...v0.1.1) (2021-06-29)
+
+
+### Bug Fixes
+
+* **demo:** 修复 demo skuEventBus 调用方式 ([00e14b8](https://github.com/edram/vant-next-sku/commit/00e14b8e9e0a618b6b541286fb72b5f48255e997))
+* 修复插槽方式时产生的bug ([afc61de](https://github.com/edram/vant-next-sku/commit/afc61de443d36e8723bb6c4702f815f1fceaeb03))
+
 # 0.1.0 (2021-06-29)
 
 
