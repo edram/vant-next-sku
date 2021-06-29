@@ -647,10 +647,20 @@ export default defineComponent({
       selectedProp,
       selectedNum,
       stepperTitle,
+      selectedSkuComb,
       showHeaderImage,
       skuEventBus,
       disableSoldoutSku,
     } = this;
+
+    const slotsProps = {
+      price,
+      originPrice,
+      selectedNum,
+      skuEventBus,
+      selectedSku,
+      selectedSkuComb,
+    };
 
     const slots = this.$slots;
 
@@ -662,7 +672,7 @@ export default defineComponent({
         selectedSku={selectedSku}
         showHeaderImage={showHeaderImage}
       >
-        {slots["sku-header-price"] || (
+        {slots["sku-header-price"]?.(slotsProps) || (
           <div class="van-sku__goods-price">
             <span class="van-sku__price-symbol">￥</span>
             <span class="van-sku__price-num">{price}</span>
@@ -671,7 +681,7 @@ export default defineComponent({
             )}
           </div>
         )}
-        {slots["sku-header-origin-price"] ||
+        {slots["sku-header-origin-price"]?.(slotsProps) ||
           (originPrice && <SkuHeaderItem>原价 ￥{originPrice}</SkuHeaderItem>)}
         {!this.hideStock && (
           <SkuHeaderItem>
@@ -683,12 +693,12 @@ export default defineComponent({
           <SkuHeaderItem>{this.selectedText}</SkuHeaderItem>
         )}
 
-        {slots["sku-header-extra"]}
+        {slots["sku-header-extra"]?.(slotsProps)}
       </SkuHeader>
     );
 
     const Group =
-      slots["sku-group"] ||
+      slots["sku-group"]?.(slotsProps) ||
       (this.hasSkuOrAttr && (
         <div class={this.skuGroupClass}>
           {this.skuTree.map((skuTreeItem) => (
@@ -723,7 +733,7 @@ export default defineComponent({
         </div>
       ));
 
-    const Stepper = slots["sku-stepper"] || (
+    const Stepper = slots["sku-stepper"]?.(slotsProps) || (
       <SkuStepper
         ref="skuStepper"
         stock={this.stock}
@@ -743,7 +753,7 @@ export default defineComponent({
       />
     );
 
-    const Messages = slots["sku-messages"] || (
+    const Messages = slots["sku-messages"]?.(slotsProps) || (
       <SkuMessages
         ref="skuMessages"
         goodsId={this.goodsId}
@@ -752,7 +762,7 @@ export default defineComponent({
       />
     );
 
-    const Actions = slots["sku-actions"] || (
+    const Actions = slots["sku-actions"]?.(slotsProps) || (
       <SkuActions
         buyText={this.buyText}
         skuEventBus={skuEventBus}
@@ -775,13 +785,13 @@ export default defineComponent({
       >
         {Header}
         <div class="van-sku-body" style={this.bodyStyle}>
-          {slots["sku-body-top"]}
+          {slots["sku-body-top"]?.(slotsProps)}
           {Group}
-          {slots["extra-sku-group"]}
+          {slots["extra-sku-group"]?.(slotsProps)}
           {Stepper}
           {Messages}
         </div>
-        {slots["sku-actions-top"]}
+        {slots["sku-actions-top"]?.(slotsProps)}
         {Actions}
       </Popup>
     );
