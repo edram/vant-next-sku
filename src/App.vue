@@ -157,7 +157,7 @@
                 square
                 size="large"
                 type="danger"
-                @click="skuEventBus.$emit('sku:buy')"
+                @click="skuEventBus.emit('sku:buy')"
               >
                 {{ t("button2") }}
               </van-button>
