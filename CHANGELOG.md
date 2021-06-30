@@ -1,3 +1,10 @@
+# [0.2.0](https://github.com/edram/vant-next-sku/compare/v0.1.1...v0.2.0) (2021-06-30)
+
+
+### Features
+
+* 增加 rollup 打包 ([117167c](https://github.com/edram/vant-next-sku/commit/117167c9db7faecacfa103d2f27d7c7eb39aaba3))
+
 ## [0.1.1](https://github.com/edram/vant-next-sku/compare/v0.1.0...v0.1.1) (2021-06-29)
 
 
