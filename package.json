@@ -1,6 +1,8 @@
 {
   "name": "vant-next-sku",
   "version": "0.1.1",
+  "module": "lib/index.js",
+  "typings": "lib/index.d.ts",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
