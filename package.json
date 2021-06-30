@@ -3,6 +3,9 @@
   "version": "0.1.1",
   "module": "lib/index.js",
   "typings": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
