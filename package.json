@@ -15,7 +15,9 @@
     "lint": "vue-cli-service lint",
     "release": "release-it",
     "deploy": "yarn build --mode=github && gh-pages -d dist",
-    "rollup": "rollup -c"
+    "rollup": "rollup -c && yarn copy:less && yarn copy:types",
+    "copy:less": "copyfiles -f ./src/components/sku/*.less lib",
+    "copy:types": "copyfiles -u 3 ./src/components/sku/*.d.ts lib"
   },
   "dependencies": {
     "core-js": "^3.6.5",
@@ -37,6 +39,7 @@
     "@vue/eslint-config-prettier": "^6.0.0",
     "@vue/eslint-config-typescript": "^7.0.0",
     "babel-eslint": "^10.1.0",
+    "copyfiles": "^2.4.1",
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^7.0.0",
