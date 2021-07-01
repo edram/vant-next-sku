@@ -1,3 +1,10 @@
+## [0.2.1](https://github.com/edram/vant-next-sku/compare/v0.2.0...v0.2.1) (2021-06-30)
+
+
+### Bug Fixes
+
+* 增加 files 选项 ([fd89bc8](https://github.com/edram/vant-next-sku/commit/fd89bc822e136962026b402157a7e3d604410789))
+
 # [0.2.0](https://github.com/edram/vant-next-sku/compare/v0.1.1...v0.2.0) (2021-06-30)
 
 
