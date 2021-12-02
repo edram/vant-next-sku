@@ -132,6 +132,7 @@ export default defineComponent({
       const { handleStepperChange } = this.customStepperConfig!;
       handleStepperChange && handleStepperChange(intValue);
       this.$emit("change", intValue);
+      this.skuEventBus!.emit("sku:numChange", intValue);
     },
 
     checkState(min: number, max: number) {
