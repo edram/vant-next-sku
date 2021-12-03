@@ -9,7 +9,7 @@
 [![NPM](https://nodei.co/npm/vant-next-sku-emiyagm.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/vant-next-sku-emiyagm)
 # vant-next-sku-emiyagm
 
-源自于 Vant2.0 框架中的 Sku 商品规格组件，为了适配 Vue3.0 和 Vite，重新做了调整。源插件来自于 https://github.com/edram/vant-next-sku，本插件是修复了其中的一些问题。
+源自于 Vant2.0 框架中的 Sku 商品规格组件，为了适配 Vue3.0 和 Vite，重新做了调整。源插件来自于 https://github.com/edram/vant-next-sku, 本插件是修复了其中的一些问题。
 
 ## Install
 
