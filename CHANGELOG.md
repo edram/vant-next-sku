@@ -1,3 +1,13 @@
+## [0.2.3](https://github.com/edram/vant-next-sku/compare/v0.2.2...v0.2.3) (2022-02-10)
+
+
+### Bug Fixes
+
+* change readme ([1ed00e0](https://github.com/edram/vant-next-sku/commit/1ed00e0db601fdef4e55690d4b04773dcf5d60ea))
+* change readme ([9ee43b0](https://github.com/edram/vant-next-sku/commit/9ee43b0912cc8f40d94bc739f9fbf6a8658b94b3))
+* rechange readme ([0fdd33e](https://github.com/edram/vant-next-sku/commit/0fdd33ee8dc0042347b0170bf2308f9d9bfca99c))
+* 步进器修改数量后,购买和加入购物车回调获得的 data 中的 selectedNum 值没有变化 ([4d0d265](https://github.com/edram/vant-next-sku/commit/4d0d265747546e7e140bdcd682a57060808d4a8c))
+
 ## [0.2.2](https://github.com/edram/vant-next-sku/compare/v0.2.1...v0.2.2) (2021-07-01)
 
 
