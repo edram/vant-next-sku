@@ -668,7 +668,7 @@ export default defineComponent({
       <SkuHeader
         sku={sku}
         goods={goods}
-        // skuEventBus={skuEventBus}
+        skuEventBus={skuEventBus}
         selectedSku={selectedSku}
         showHeaderImage={showHeaderImage}
       >

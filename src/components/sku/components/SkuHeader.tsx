@@ -1,5 +1,4 @@
 import { defineComponent, PropType } from "vue";
-import { TinyEmitter } from "tiny-emitter";
 import { createNamespace } from "vant/lib/utils";
 import { BORDER_BOTTOM } from "vant/lib/utils/constant";
 import Image from "vant/lib/image";
@@ -17,8 +16,6 @@ type SelectedValueType = {
 };
 
 const [name, bem] = createNamespace("sku-header");
-
-const emitter = new TinyEmitter();
 
 function getSkuImgValue(
   sku: SkuData,
@@ -79,7 +76,7 @@ export default defineComponent({
       const imgUrl = selectedValue ? selectedValue.imgUrl : goods?.picture;
 
       const previewImage = () => {
-        emitter.emit("sku:previewImage", selectedValue);
+        skuEventBus?.emit("sku:previewImage", selectedValue);
       };
 
       return (
