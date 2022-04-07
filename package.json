@@ -1,6 +1,6 @@
 {
   "name": "vant-next-sku",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "module": "lib/index.js",
   "typings": "lib/index.d.ts",
   "files": [

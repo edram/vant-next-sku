@@ -1,3 +1,10 @@
+## [0.2.4](https://github.com/edram/vant-next-sku/compare/v0.2.3...v0.2.4) (2022-04-07)
+
+
+### Bug Fixes
+
+* 修复 SkuHeader 点击无法预览的 bug ([#5](https://github.com/edram/vant-next-sku/issues/5)) ([2f9205a](https://github.com/edram/vant-next-sku/commit/2f9205a45801648e4148864abcfc036a759dd670))
+
 ## [0.2.3](https://github.com/edram/vant-next-sku/compare/v0.2.2...v0.2.3) (2022-02-10)
 
 
